@@ -35,7 +35,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Logo -->
             <a href="#" class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent flex items-center gap-2">
-                <i class="fa-solid fa-bag-shopping"></i> শপইউনিক
+                <i class="fa-solid fa-bag-shopping"></i> Hawakum 
             </a>
 
             <!-- Search Bar (Desktop) -->
@@ -376,65 +376,55 @@ footer{text-align:center;color:var(--muted);padding:24px 16px;font-size:13px}
       <input id="customerName" placeholder="আপনার নাম *" autocomplete="name">
       <input id="customerPhone" placeholder="মোবাইল নম্বর *" type="tel" autocomplete="tel">
       <input id="customerAddress" placeholder="ডেলিভারি ঠিকানা *" autocomplete="street-address">
-      <input id="customerEmail" placeholder="ইমেইল (ঐচ্ছিক)" type="email" autocomplete="email">
-      <textarea id="customerNote" rows="3" placeholder="অতিরিক্ত নির্দেশনা (ঐচ্ছিক)"></textarea>
-    </div>
-    <p class="muted" id="waHint">WhatsApp-এ অর্ডার পাঠাতে নিচের বোতাম চাপুন। প্রথমে কোডে আপনার WhatsApp নম্বর বসাতে হবে।</p>
-    <button class="btn primary" style="width:100%" onclick="sendOrder()" id="orderBtn">WhatsApp-এ অর্ডার করুন</button>
-  </section>
+<input id="customerEmail" placeholder="ইমেইল (ঐচ্ছিক)" type="email" autocomplete="email">
+<textarea id="customerNote" rows="3" placeholder="অতিরিক্ত নির্দেশনা (ঐচ্ছিক)"></textarea>
+</div>
+<p class="muted" id="waHint">WhatsApp-এ অর্ডার পাঠাতে নিচের বোতাম চাপুন। প্রথমে কোডে আপনার WhatsApp নম্বর বসাতে হবে।</p>
+<button class="btn primary" style="width:100%" onclick="sendOrder()" id="orderBtn">WhatsApp-এ অর্ডার করুন</button>
+</section>
 </main>
 <footer>© <span id="year"></span> HAWAKUM SHOP · <span id="footerText">আপনার অনলাইন শপ</span></footer>
 <script>
 const WHATSAPP_NUMBER = "97451085419"; // এখানে দেশের কোডসহ আপনার WhatsApp নম্বর দিন; + বা স্পেস দেবেন না।
-const products = [
- {id:1,emoji:"👕",nameBn:"ক্যাজুয়াল টি-শার্ট",nameEn:"Casual T-shirt",price:450,cat:"fashion"},
- {id:2,emoji:"🎒",nameBn:"দৈনন্দিন ব্যাকপ্যাক",nameEn:"Everyday Backpack",price:850,cat:"fashion"},
- {id:3,emoji:"🎧",nameBn:"ওয়্যারলেস হেডফোন",nameEn:"Wireless Headphones",price:1250,cat:"tech"},
- {id:4,emoji:"⌚",nameBn:"স্মার্ট ঘড়ি",nameEn:"Smart Watch",price:1750,cat:"tech"},
- {id:5,emoji:"☕",nameBn:"সিরামিক কফি মগ",nameEn:"Ceramic Coffee Mug",price:250,cat:"home"},
- {id:6,emoji:"💡",nameBn:"LED ডেস্ক ল্যাম্প",nameEn:"LED Desk Lamp",price:650,cat:"home"},
- {id:7,emoji:"🧴",nameBn:"স্কিন কেয়ার সেট",nameEn:"Skin Care Set",price:590,cat:"beauty"},
- {id:8,emoji:"🕶️",nameBn:"সানগ্লাস",nameEn:"Sunglasses",price:390,cat:"fashion"}
-];
-let lang="bn", cart={};
+const products = [{id:1,emoji:"👕",nameBn:"ক্যাজুয়াল টি-শার্ট",nameEn:"Casual T-shirt",price:450,cat:"fashion"
+{id:2,emoji:"🎒",nameBn:"দৈনন্দিন ব্যাকপ্যাক",nameEn:"Everyday Backpack",price:850,cat:"fashion"},
+{id:3,emoji:"🎧",nameBn:"ওয়্যারলেস হেডফোন",nameEn:"Wireless Headphones",price:1250,cat:"tech"},
+{id:4,emoji:"⌚",nameBn:"স্মার্ট ঘড়ি",nameEn:"Smart Watch",price:1750,cat:"tech"},
+{id:5,emoji:"☕",nameBn:"সিরামিক কফি মগ",nameEn:"Ceramic Coffee Mug",price:250,cat:"home"},
+{id:6,emoji:"💡",nameBn:"LED ডেস্ক ল্যাম্প",nameEn:"LED Desk Lamp",price:650,cat:"home"},
+{id:7,emoji:"🧴",nameBn:"স্কিন কেয়ার সেট",nameEn:"Skin Care Set",price:590,cat:"beauty"}, {id:8,emoji:"🕶️",nameBn:"সানগ্লাস",nameEn:"Sunglasses",price:390,cat:"fashion"}
+];let lang="bn", cart={};
 const $=id=>document.getElementById(id);
-function money(n){return (lang==="bn"?"৳":"BDT ")+Number(n).toLocaleString(lang==="bn"?"bn-BD":"en-US");}
-function toggleLang(){lang=lang==="bn"?"en":"bn";document.documentElement.lang=lang;$("langBtn").textContent=lang==="bn"?"English":"বাংলা";applyLanguage();renderProducts();renderCart();}
-function applyLanguage(){
- const t=lang==="bn";
- $("tagline").textContent=t?"আপনার পছন্দ, আপনার শপ":"Your choice, your shop";
- $("heroTitle").textContent=t?"আপনার পছন্দের কেনাকাটা, এক জায়গায়":"Your favorite shopping, all in one place";
- $("heroText").textContent=t?"দৈনন্দিন প্রয়োজনীয় পণ্য খুঁজুন, কার্টে যোগ করুন এবং WhatsApp-এ অর্ডার পাঠান।":"Find everyday essentials, add them to your cart, and send your order on WhatsApp.";
- $("shopNow").textContent=t?"কেনাকাটা শুরু করুন":"Start Shopping";
- $("search").placeholder=t?"পণ্য খুঁজুন...":"Search products...";
- $("category").options[0].text=t?"সব বিভাগ":"All categories";
- $("category").options[1].text=t?"পোশাক":"Fashion";$("category").options[2].text=t?"ইলেকট্রনিক্স":"Electronics";$("category").options[3].text=t?"ঘর ও রান্নাঘর":"Home & Kitchen";$("category").options[4].text=t?"সৌন্দর্য":"Beauty";
+function money(n){return (lang==="bn"?"৳":"BDT ")+Number(n).toLocaleString(lang==="bn"?"bn-BD":"en-US");}function toggleLang(
+{lang=lang==="bn"?"en":"bn";document.documentElement.lang=lang;("langBtn").textContent=lang==="bn"?"English":"বাংলা";applyLanguage();renderProducts();renderCart();}
+function applyLanguage()
+{const t=lang==="bn";
+$("tagline").textContent=t?"আপনার পছন্দ, আপনার শপ":"Your choice, your shop"; $("heroTitle").textContent=t?"আপনার পছন্দের কেনাকাটা, এক জায়গায়":"Your favorite shopping, all in one place"; $("heroText").textContent=t?"দৈনন্দিন প্রয়োজনীয় পণ্য খুঁজুন, কার্টে যোগ করুন এবং WhatsApp-এ অর্ডার পাঠান।":"Find everyday essentials, add them to your cart, and send your order on WhatsApp."; $("shopNow").textContent=t?"কেনাকাটা শুরু করুন":"Start Shopping";
+$("search").placeholder=t?"পণ্য খুঁজুন...":"Search products..."; $("category").options[0].text=t?"সব বিভাগ":"All categories"; $("category").options[1].text=t?"পোশাক":"Fashion";$("category").options[2].text=t?"ইলেকট্রনিক্স":"Electronics";$("category").options[3].text=t?"ঘর ও রান্নাঘর":"Home & Kitchen";$("category").options[4].text=t?"সৌন্দর্য":"Beauty";
  $("productsTitle").textContent=t?"জনপ্রিয় পণ্য":"Popular Products";$("cartLabel").textContent=t?"কার্ট":"Cart";$("cartTitle").textContent=t?"আপনার শপিং কার্ট":"Your Shopping Cart";$("totalLabel").textContent=t?"মোট":"Total";$("checkoutTitle").textContent=t?"অর্ডারের তথ্য":"Order Details";
  $("customerName").placeholder=t?"আপনার নাম *":"Your name *";$("customerPhone").placeholder=t?"মোবাইল নম্বর *":"Phone number *";$("customerAddress").placeholder=t?"ডেলিভারি ঠিকানা *":"Delivery address *";$("customerEmail").placeholder=t?"ইমেইল (ঐচ্ছিক)":"Email (optional)";$("customerNote").placeholder=t?"অতিরিক্ত নির্দেশনা (ঐচ্ছিক)":"Extra instructions (optional)";
  $("waHint").textContent=t?"WhatsApp-এ অর্ডার পাঠাতে নিচের বোতাম চাপুন। প্রথমে কোডে আপনার WhatsApp নম্বর বসাতে হবে।":"Tap below to send your order on WhatsApp. Add your WhatsApp number in the code first.";
- $("orderBtn").textContent=t?"WhatsApp-এ অর্ডার করুন":"Order on WhatsApp";$("footerText").textContent=t?"আপনার অনলাইন শপ":"Your online shop";
-}
-function renderProducts(){
- const q=$("search").value.trim().toLowerCase(), cat=$("category").value;
- const list=products.filter(p=>(cat==="all"||p.cat===cat)&&((lang==="bn"?p.nameBn:p.nameEn).toLowerCase().includes(q)||p.nameBn.toLowerCase().includes(q)||p.nameEn.toLowerCase().includes(q)));
+ $("orderBtn").textContent=t?"WhatsApp-এ অর্ডার করুন":"Order on WhatsApp";$("footerText").textContent=t?"আপনার অনলাইন শপ":"Your online shop";}
+function renderProducts()
+{const q=$("search").value.trim().toLowerCase(), cat=$("category").value;
+const list=products.filter(p=>(cat==="all"||p.cat===cat)&&((lang==="bn"?p.nameBn:p.nameEn).toLowerCase().includes(q)||p.nameBn.toLowerCase().includes(q)||p.nameEn.toLowerCase().includes(q)));
  $("productCount").textContent=lang==="bn"?list.length+"টি পণ্য":list.length+" products";
- $("products").innerHTML=list.length?list.map(p=>`<article class="card"><div class="product-img" role="img" aria-label="${p.nameEn}">${p.emoji}</div><div class="card-body"><h3>${lang==="bn"?p.nameBn:p.nameEn}</h3><div class="price">${money(p.price)}</div><div class="muted">${lang==="bn"?"নমুনা পণ্য":"Sample product"}</div><button class="btn primary" onclick="addToCart(${p.id})">${lang==="bn"?"কার্টে যোগ করুন":"Add to Cart"}</button></div></article>`).join(""):`<div class="empty">${lang==="bn"?"কোনো পণ্য পাওয়া যায়নি।":"No products found."}</div>`;
-}
+ $("products").innerHTML=list.length?list.map(p=>`<article class="card"><div class="product-img" role="img" aria-label="${p.nameEn}">${p.emoji}</div><div class="card-body"><h3>${lang==="bn"?p.nameBn:p.nameEn}</h3><div class="price">${money(p.price)}</div><div class="muted">${lang==="bn"?"নমুনা পণ্য":"Sample product"}</div><button class="btn primary" onclick="addToCart(${p.id})">${lang==="bn"?"কার্টে যোগ করুন":"Add to Cart"}</button></div></article>`).join(""):`<div class="empty">${lang==="bn"?"কোনো পণ্য পাওয়া যায়নি।":"No products found."}</div>`;}
 function addToCart(id){cart[id]=(cart[id]||0)+1;renderCart();}
 function changeQty(id,delta){cart[id]=(cart[id]||0)+delta;if(cart[id]<=0)delete cart[id];renderCart();}
-function renderCart(){
- const items=products.filter(p=>cart[p.id]);$("cartCount").textContent=Object.values(cart).reduce((a,b)=>a+b,0);
+function renderCart()
+{const items=products.filter(p=>cart[p.id]);$("cartCount").textContent=Object.values(cart).reduce((a,b)=>a+b,0);
  $("cartItems").innerHTML=items.length?items.map(p=>`<div class="cart-row"><div><strong>${lang==="bn"?p.nameBn:p.nameEn}</strong><div class="muted">${money(p.price)} × ${cart[p.id]}</div></div><div class="qty"><button aria-label="Decrease quantity" onclick="changeQty(${p.id},-1)">−</button><span>${cart[p.id]}</span><button aria-label="Increase quantity" onclick="changeQty(${p.id},1)">+</button></div></div>`).join(""):`<div class="empty">${lang==="bn"?"আপনার কার্ট খালি। পণ্য যোগ করুন।":"Your cart is empty. Add some products."}</div>`;
- const total=items.reduce((s,p)=>s+p.price*cart[p.id],0);$("total").textContent=money(total);
-}
-function sendOrder(){
- const items=products.filter(p=>cart[p.id]);if(!items.length){alert(lang==="bn"?"প্রথমে কার্টে পণ্য যোগ করুন।":"Please add products to your cart first.");return;}
- const name=$("customerName").value.trim(),phone=$("customerPhone").value.trim(),address=$("customerAddress").value.trim();
+ const total=items.reduce((s,p)=>s+p.price*cart[p.id],0);$("total").textContent=money(total);}
+function sendOrder()
+{const items=products.filter(p=>cart[p.id]);if(!items.length){alert(lang==="bn"?"প্রথমে কার্টে পণ্য যোগ করুন।":"Please add products to your cart first.");return;}
+const name=$("customerName").value.trim(),phone=$("customerPhone").value.trim(),address=$("customerAddress").value.trim();
  if(!name||!phone||!address){alert(lang==="bn"?"নাম, মোবাইল নম্বর ও ঠিকানা পূরণ করুন।":"Please enter your name, phone number, and address.");return;}
  if(WHATSAPP_NUMBER.includes("X")){alert(lang==="bn"?"কোডে WHATSAPP_NUMBER-এর জায়গায় আপনার WhatsApp নম্বর বসান।":"Replace WHATSAPP_NUMBER in the code with your WhatsApp number.");return;}
- const total=items.reduce((s,p)=>s+p.price*cart[p.id],0);
- const lines=items.map(p=>`${lang==="bn"?p.nameBn:p.nameEn} × ${cart[p.id]} = ${money(p.price*cart[p.id])}`);
- const msg=(lang==="bn"?"HAWAKUM SHOP অর্ডার\n":"HAWAKUM SHOP ORDER\n")+"\n"+lines.join("\n")+"\n\n"+(lang==="bn"?"মোট: ":"Total: ")+money(total)+"\n"+(lang==="bn"?"নাম: ":"Name: ")+name+"\n"+(lang==="bn"?"ফোন: ":"Phone: ")+phone+"\n"+(lang==="bn"?"ঠিকানা: ":"Address: ")+address+($("customerEmail").value.trim()?"\nEmail: "+$("customerEmail").value.trim():"")+($("customerNote").value.trim()?"\nNote: "+$("customerNote").value.trim():"");
+ 
+const total=items.reduce((s,p)=>s+p.price*cart[p.id],0);
+const lines=items.map(p=>`${lang==="bn"?p.nameBn:p.nameEn} × ${cart[p.id]} = ${money(p.price*cart[p.id])}`);
+const msg=(lang==="bn"?"HAWAKUM SHOP অর্ডার\n":"HAWAKUM SHOP ORDER\n")+"\n"+lines.join("\n")+"\n\n"+(lang==="bn"?"মোট: ":"Total: ")+money(total)+"\n"+(lang==="bn"?"নাম: ":"Name: ")+name+"\n"+(lang==="bn"?"ফোন: ":"Phone: ")+phone+"\n"+(lang==="bn"?"ঠিকানা: ":"Address: ")+address+($("customerEmail").value.trim()?"\nEmail: "+$("customerEmail").value.trim():"")+($("customerNote").value.trim()?"\nNote: "+$("customerNote").value.trim():"");
  window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(msg),"_blank");
 }
 $("year").textContent=new Date().getFullYear();applyLanguage();renderProducts();renderCart();
