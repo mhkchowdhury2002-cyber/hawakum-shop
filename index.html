@@ -1,433 +1,456 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>মডার্ন ই-কমার্স শপ</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Hind Siliguri', sans-serif;
-        }
-        /* Custom Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
-</head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-indigo-500 selection:text-white">
-
-    <!-- Top Announcement Bar -->
-    <div class="bg-indigo-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium">
-        🎉 নতুন বছরের অফার! সব পণ্যের ওপর চলছে ফ্ল্যাট ২০% ছাড়। আজই অর্ডার করুন!
-    </div>
-
-    <!-- Header / Navbar -->
-    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-xs">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Logo -->
-            <a href="#" class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent flex items-center gap-2">
-                <i class="fa-solid fa-bag-shopping"></i> Hawakum 
-            </a>
-
-            <!-- Search Bar (Desktop) -->
-            <div class="hidden md:flex items-center relative w-96">
-                <input type="text" id="searchInput" placeholder="আপনার পছন্দের পণ্য খুঁজুন..." class="w-full bg-slate-100/80 border border-transparent focus:border-indigo-500 focus:bg-white text-sm rounded-full py-2.5 pl-10 pr-4 transition-all outline-none">
-                <i class="fa-solid fa-search absolute left-4 text-slate-400"></i>
-            </div>
-
-            <!-- Nav Actions -->
-            <div class="flex items-center gap-4">
-                <button onclick="toggleCart()" class="relative p-2.5 rounded-full hover:bg-slate-100 transition-colors text-slate-700 cursor-pointer">
-                    <i class="fa-solid fa-cart-shopping text-xl"></i>
-                    <span id="cartCount" class="absolute -top-1 -right-1 bg-indigo-600 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md">0</span>
-                </button>
-                <a href="#products" class="hidden sm:inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-lg shadow-indigo-600/20 transition-all duration-300 transform hover:-translate-y-0.5">
-                    শপিং করুন
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden bg-gradient-to-br from-indigo-900 via-slate-900 to-violet-950 text-white py-24 lg:py-32">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6 text-center lg:text-left">
-                <span class="inline-block bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full backdrop-blur-md">
-                    ✨ লেটেস্ট কালেকশন ২০২৬
-                </span>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
-                    আপনার ফ্যাশন ও জীবনযাত্রাকে করুন <span class="bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent">আরও স্টাইলিশ</span>
-                </h1>
-                <p class="text-slate-300 text-base sm:text-lg max-w-xl mx-auto lg:mx-0">
-                    সেরা মানের প্রিমিয়াম গ্যাজেট, ফ্যাশন আইটেম এবং লাইফস্টাইল পণ্য এখন এক ছাদের নিচে। সেরা দামে সেরা অভিজ্ঞতা।
-                </p>
-                <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
-                    <a href="#products" class="bg-white text-slate-900 hover:bg-slate-100 font-bold px-8 py-3.5 rounded-full shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                        পণ্যসমূহ দেখুন
-                    </a>
-                    <a href="#categories" class="border border-slate-700 hover:border-slate-500 bg-white/5 backdrop-blur-md font-semibold px-8 py-3.5 rounded-full transition-all duration-300">
-                        ক্যাটাগরি ব্রাউজ করুন
-                    </a>
-                </div>
-            </div>
-            <div class="relative flex justify-center">
-                <div class="w-72 sm:w-96 h-72 sm:h-96 rounded-3xl bg-gradient-to-tr from-indigo-500 to-pink-500 p-1 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
-                    <div class="w-full h-full bg-slate-900 rounded-[22px] flex items-center justify-center overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80" alt="Hero Product" class="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-500">
-                        <div class="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md p-4 rounded-xl border border-white/10">
-                            <p class="text-sm font-bold">প্রিমিয়াম স্মার্ট ওয়াচ</p>
-                            <p class="text-xs text-indigo-300">বিশেষ ডিসকাউন্টে উপলব্ধ</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Categories Section -->
-    <section id="categories" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-            <h2 class="text-3xl font-bold tracking-tight text-slate-900">জনপ্রিয় ক্যাটাগরি</h2>
-            <p class="text-slate-500 mt-2">আপনার পছন্দের ক্যাটাগরি বেছে নিন খুব সহজেই</p>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <!-- Category Card 1 -->
-            <div onclick="filterCategory('All')" class="group cursor-pointer bg-white p-6 rounded-2xl border border-slate-100 shadow-xs hover:shadow-xl hover:border-indigo-100 transition-all text-center">
-                <div class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <i class="fa-solid fa-laptop text-2xl"></i>
-                </div>
-                <h3 class="font-bold text-slate-800">গ্যাজেট ও টেক</h3>
-                <p class="text-xs text-slate-400 mt-1">সব পণ্য</p>
-            </div>
-            <!-- Category Card 2 -->
-            <div onclick="filterCategory('Watch')" class="group cursor-pointer bg-white p-6 rounded-2xl border border-slate-100 shadow-xs hover:shadow-xl hover:border-indigo-100 transition-all text-center">
-                <div class="w-16 h-16 bg-pink-50 text-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <i class="fa-solid fa-clock text-2xl"></i>
-                </div>
-                <h3 class="font-bold text-slate-800">ঘড়ি ও ফ্যাশন</h3>
-                <p class="text-xs text-slate-400 mt-1">ওয়াচ কালেকশন</p>
-            </div>
-            <!-- Category Card 3 -->
-            <div onclick="filterCategory('Audio')" class="group cursor-pointer bg-white p-6 rounded-2xl border border-slate-100 shadow-xs hover:shadow-xl hover:border-indigo-100 transition-all text-center">
-                <div class="w-16 h-16 bg-violet-50 text-violet-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <i class="fa-solid fa-headphones text-2xl"></i>
-                </div>
-                <h3 class="font-bold text-slate-800">অডিও এক্সেসরিজ</h3>
-                <p class="text-xs text-slate-400 mt-1">হেডফোন ও ইয়ারবাডস</p>
-            </div>
-            <!-- Category Card 4 -->
-            <div onclick="filterCategory('Sneakers')" class="group cursor-pointer bg-white p-6 rounded-2xl border border-slate-100 shadow-xs hover:shadow-xl hover:border-indigo-100 transition-all text-center">
-                <div class="w-16 h-16 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <i class="fa-solid fa-shoe-prints text-2xl"></i>
-                </div>
-                <h3 class="font-bold text-slate-800">স্নিকার্স</h3>
-                <p class="text-xs text-slate-400 mt-1">স্টাইলিশ জুতো</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section id="products" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-12">
-            <div>
-                <h2 class="text-3xl font-bold tracking-tight text-slate-900">আমাদের ট্রেন্ডিং পণ্যসমূহ</h2>
-                <p class="text-slate-500 mt-1">সবচেয়ে জনপ্রিয় এবং সেরা রেটিংপ্রাপ্ত পণ্য</p>
-            </div>
-            <div class="mt-4 sm:mt-0 flex gap-2">
-                <button onclick="filterCategory('All')" class="px-4 py-2 text-sm font-semibold rounded-full bg-indigo-600 text-white shadow-sm">সব</button>
-                <button onclick="filterCategory('Watch')" class="px-4 py-2 text-sm font-semibold rounded-full bg-slate-200/70 hover:bg-slate-200 text-slate-700 transition-colors">ওয়াচ</button>
-                <button onclick="filterCategory('Audio')" class="px-4 py-2 text-sm font-semibold rounded-full bg-slate-200/70 hover:bg-slate-200 text-slate-700 transition-colors">অডিও</button>
-            </div>
-        </div>
-
-        <!-- Product Grid -->
-        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Products will be injected dynamically via JavaScript -->
-        </div>
-    </section>
-
-    <!-- Cart Drawer Modal -->
-    <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden hidden">
-        <div class="absolute inset-0 bg-black/50 backdrop-blur-xs transition-opacity" onclick="toggleCart()"></div>
-        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
-            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
-                <!-- Cart Header -->
-                <div class="p-6 border-b border-slate-100 flex items-center justify-between">
-                    <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-                        <i class="fa-solid fa-cart-shopping text-indigo-600"></i> আপনার শপিং কার্ট
-                    </h3>
-                    <button onclick="toggleCart()" class="p-2 text-slate-400 hover:text-slate-600 rounded-full hover:bg-slate-100 transition-colors">
-                        <i class="fa-solid fa-xmark text-xl"></i>
-                    </button>
-                </div>
-                <!-- Cart Items Container -->
-                <div id="cartItems" class="flex-1 overflow-y-auto p-6 space-y-4">
-                    <!-- Dynamic Cart Items -->
-                </div>
-                <!-- Cart Footer -->
-                <div class="p-6 border-t border-slate-100 bg-slate-50 space-y-4">
-                    <div class="flex justify-between text-base font-semibold text-slate-800">
-                        <span>মোট মূল্য:</span>
-                        <span id="cartTotal" class="text-indigo-600 font-bold">৳০</span>
-                    </div>
-                    <button onclick="checkout()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-indigo-600/20 transition-all duration-300">
-                        অর্ডার কনফার্ম করুন
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div>
-                <a href="#" class="text-2xl font-bold text-white flex items-center gap-2 mb-4">
-                    <i class="fa-solid fa-bag-shopping text-indigo-500"></i> শপইউনিক
-                </a>
-                <p class="text-sm">আপনার বিশ্বস্ত অনলাইন শপিং পার্টনার। আমরা দিচ্ছি সেরা মানের পণ্য এবং দ্রুত হোম ডেলিভারি।</p>
-            </div>
-            <div>
-                <h4 class="text-white font-semibold mb-4">দ্রুত লিংক</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white transition-colors">হোমপেজ</a></li>
-                    <li><a href="#products" class="hover:text-white transition-colors">পণ্যসমূহ</a></li>
-                    <li><a href="#categories" class="hover:text-white transition-colors">ক্যাটাগরি</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-semibold mb-4">যোগাযোগ</h4>
-                <p class="text-sm mb-2"><i class="fa-solid fa-phone mr-2 text-indigo-500"></i> +৮৮০ ১২৩৪ ৫৬৭৮৯০</p>
-                <p class="text-sm"><i class="fa-solid fa-envelope mr-2 text-indigo-500"></i> support@shopunique.com</p>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs border-t border-slate-800 pt-8">
-            &copy; ২০২৬ শপইউনিক। সর্বস্বত্ব সংরক্ষিত।
-        </div>
-    </footer>
-
-    <!-- JavaScript for Functionality -->
-    <script>
-        // Sample Products Data
-        const products = [
-            { id: 1, name: 'প্রিমিয়াম স্মার্ট ওয়াচ', category: 'Watch', price: 2499, oldPrice: 3200, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80', badge: 'ডিসকাউন্ট' },
-            { id: 2, name: 'ওয়্যারলেস ব্লুটুথ ইয়ারবাডস', category: 'Audio', price: 1599, oldPrice: 2100, image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80', badge: 'হট' },
-            { id: 3, name: 'স্টাইলিশ ক্যাজুয়াল স্নিকার্স', category: 'Sneakers', price: 3199, oldPrice: 4000, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&auto=format&fit=crop&q=80', badge: 'নতুন' },
-            { id: 4, name: 'ডিজিটাল স্পোর্টস ওয়াচ', category: 'Watch', price: 1899, oldPrice: 2500, image: 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=600&auto=format&fit=crop&q=80', badge: 'জনপ্রিয়' },
-            { id: 5, name: 'নয়েজ ক্যান্সেলেশন হেডফোন', category: 'Audio', price: 3499, oldPrice: 4500, image: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600&auto=format&fit=crop&q=80', badge: 'সেরা' },
-            { id: 6, name: 'রানিং স্পোর্টস শু', category: 'Sneakers', price: 2899, oldPrice: 3500, image: 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?w=600&auto=format&fit=crop&q=80', badge: 'ডিসকাউন্ট' },
-        ];
-
-        let cart = [];
-        let currentCategory = 'All';
-
-        // Render Products
-        function renderProducts(filter = 'All', searchQuery = '') {
-            const grid = document.getElementById('productGrid');
-            grid.innerHTML = '';
-
-            const filtered = products.filter(p => {
-                const matchCategory = filter === 'All' || p.category === filter;
-                const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
-                return matchCategory && matchSearch;
-            });
-
-            if (filtered.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500">কোনো পণ্য পাওয়া যায়নি</div>`;
-                return;
-            }
-
-            filtered.forEach(product => {
-                grid.innerHTML += `
-                    <div class="group bg-white rounded-3xl border border-slate-100 shadow-xs hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
-                        <div class="relative overflow-hidden bg-slate-100 h-64">
-                            <span class="absolute top-3 left-3 z-10 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">${product.badge}</span>
-                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col justify-between">
-                            <div>
-                                <span class="text-xs font-semibold text-indigo-600 uppercase tracking-wider">${product.category}</span>
-                                <h3 class="text-lg font-bold text-slate-800 mt-1 mb-2">${product.name}</h3>
-                            </div>
-                            <div class="flex items-center justify-between pt-4 border-t border-slate-100">
-                                <div>
-                                    <span class="text-xl font-extrabold text-indigo-600">৳${product.price}</span>
-                                    <span class="text-xs text-slate-400 line-through ml-2">৳${product.oldPrice}</span>
-                                </div>
-                                <button onclick="addToCart(${product.id})" class="bg-indigo-50 hover:bg-indigo-600 text-indigo-600 hover:text-white p-3 rounded-2xl transition-colors shadow-xs cursor-pointer">
-                                    <i class="fa-solid fa-cart-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        // Filter by Category
-        function filterCategory(category) {
-            currentCategory = category;
-            const searchVal = document.getElementById('searchInput').value;
-            renderProducts(category, searchVal);
-        }
-
-        // Search functionality
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            renderProducts(currentCategory, e.target.value);
-        });
-
-        // Add to Cart
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            const existing = cart.find(item => item.id === productId);
-
-            if (existing) {
-                existing.quantity += 1;
-            } else {
-                cart.push({ ...product, quantity: 1 });
-            }
-            updateCartUI();
-        }
-
-        // Update Cart UI & Count
-        function updateCartUI() {
-            const countEl = document.getElementById('cartCount');
-            const cartItemsEl = document.getElementById('cartItems');
-            const cartTotalEl = document.getElementById('cartTotal');
-
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            countEl.textContent = totalItems;
-
-            if (cart.length === 0) {
-                cartItemsEl.innerHTML = `<p class="text-center text-slate-400 py-12">আপনার কার্ট খালি রয়েছে</p>`;
-                cartTotalEl.textContent = '৳০';
-                return;
-            }
-
-            cartItemsEl.innerHTML = '';
-            let total = 0;
-
-            cart.forEach((item, index) => {
-                total += item.price * item.quantity;
-                cartItemsEl.innerHTML += `
-                    <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-xl">
-               
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#087f5b">
-<title>HAWAKUM SHOP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MY DOCS — Private Cloud</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root{--green:#087f5b;--dark:#12352b;--cream:#f6f8f5;--muted:#65756e;--line:#e0e8e3}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Bengali",sans-serif;background:var(--cream);color:var(--dark)}
-header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
-.top{max-width:1100px;margin:auto;padding:14px 16px;display:flex;align-items:center;gap:12px;justify-content:space-between}
-.brand{font-weight:900;font-size:20px;color:var(--green);letter-spacing:.3px}.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:1.5px;margin-top:3px}
-.actions{display:flex;gap:8px;align-items:center}.btn,select,input,textarea{font:inherit}.btn{border:0;border-radius:10px;padding:10px 13px;font-weight:700;cursor:pointer}.primary{background:var(--green);color:white}.light{background:#eaf4ee;color:var(--green)}
-main{max-width:1100px;margin:auto;padding:20px 16px 40px}
-.hero{background:linear-gradient(120deg,#e2f4e8,#f7fbf7);border:1px solid #d4e9da;border-radius:20px;padding:26px 20px;margin-bottom:20px}
-.hero h1{font-size:clamp(25px,5vw,42px);margin:0 0 10px;line-height:1.18}.hero p{color:var(--muted);max-width:560px;line-height:1.6;margin:0 0 16px}
-.tools{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.tools input,.tools select{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;min-width:0}.tools input{flex:1;min-width:160px}
-.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:18px 0 12px}.section-head h2{margin:0;font-size:22px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.card{background:#fff;border:1px solid var(--line);border-radius:15px;overflow:hidden;display:flex;flex-direction:column}
-.product-img{height:135px;background:#eef3ef;display:flex;align-items:center;justify-content:center;font-size:56px}
-.card-body{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1}.card h3{margin:0;font-size:15px;line-height:1.4}.price{font-size:18px;font-weight:800;color:var(--green)}.muted{font-size:12px;color:var(--muted)}.card .btn{width:100%;margin-top:auto}
-.cart{background:white;border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:22px}.cart h2{margin:0 0 12px}.cart-row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}.qty{display:flex;align-items:center;gap:8px}.qty button{border:1px solid var(--line);background:#f7faf7;border-radius:7px;padding:4px 9px}.total{display:flex;justify-content:space-between;font-size:18px;font-weight:800;margin:15px 0}
-.form-grid{display:grid;gap:10px;margin-top:12px}.form-grid input,.form-grid textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:#fff}
-footer{text-align:center;color:var(--muted);padding:24px 16px;font-size:13px}
-.empty{padding:24px;text-align:center;color:var(--muted);background:white;border:1px dashed var(--line);border-radius:12px;grid-column:1/-1}
-@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.product-img{height:180px}.hero{padding:38px}.form-grid{grid-template-columns:1fr 1fr}.form-grid textarea{grid-column:1/-1}}
-@media(min-width:900px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;color:#eef5ff;
+ font-family:Arial,sans-serif;
+ background:radial-gradient(ellipse at top,#12376a,#071120 65%);
+}
+button,input{font:inherit}
+button{cursor:pointer}
+.wrap{width:min(100% - 28px,760px);margin:35px auto}
+.card{
+ background:rgba(12,28,51,.92);border:1px solid #29476b;
+ border-radius:22px;padding:24px;box-shadow:0 18px 60px #0005;
+}
+.logo{font-size:27px;font-weight:800;letter-spacing:2px}
+.logo span{color:#51b8ff}
+.muted{color:#a8bed9;line-height:1.6}
+h1{font-size:27px;margin:16px 0 8px}
+label{display:block;margin:15px 0 7px;color:#d8e9ff}
+input{
+ width:100%;padding:13px;border-radius:10px;
+ border:1px solid #355579;background:#09172b;color:white;
+ outline:none;
+}
+input:focus{border-color:#50b9ff}
+.btn{
+ border:0;border-radius:10px;padding:13px 16px;
+ background:linear-gradient(100deg,#1679ed,#36b8ff);
+ color:white;font-weight:bold;
+}
+.btn:disabled{opacity:.5}
+.full{width:100%;margin-top:17px}
+.secondary{background:#193653;border:1px solid #355579}
+.link{background:none;border:0;color:#62c5ff;padding:12px 0}
+.hidden{display:none!important}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.stats{padding:15px;background:#102643;border-radius:12px;margin:20px 0}
+.file{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:10px;padding:14px 0;border-bottom:1px solid #29415d;
+ overflow-wrap:anywhere;
+}
+.file:last-child{border:0}
+.file-name{font-weight:600;overflow-wrap:anywhere}
+.small{font-size:12px;color:#a8bed9;margin-top:5px}
+.actions{display:flex;gap:7px;flex-wrap:wrap}
+.actions button{padding:8px 10px;font-size:13px}
+#notice{padding:12px;border-radius:9px;margin:14px 0;overflow-wrap:anywhere}
+#notice:empty{display:none}
+.ok{background:#123d35;color:#a5ffe2}
+.err{background:#512a36;color:#ffd2d9}
+#drop{border:1px dashed #4a83b9;padding:20px;border-radius:13px;margin-top:16px}
+.glow{animation:appear .7s ease both}
+@keyframes appear{
+ from{opacity:0;transform:translateY(15px)}
+ to{opacity:1;transform:translateY(0)}
+}
+@media(max-width:480px){
+ .wrap{margin:16px auto}.card{padding:18px}
+ h1{font-size:23px}.file{align-items:flex-start;flex-direction:column}
+ .top{align-items:flex-start}.logo{font-size:23px}
+}
 </style>
 </head>
 <body>
-<header><div class="top">
-  <div class="brand">HAWAKUM SHOP<small id="tagline">আপনার পছন্দ, আপনার শপ</small></div>
-  <div class="actions"><button class="btn light" id="langBtn" onclick="toggleLang()">English</button><button class="btn primary" onclick="document.getElementById('cart').scrollIntoView({behavior:'smooth'})">🛒 <span id="cartLabel">কার্ট</span> (<span id="cartCount">0</span>)</button></div>
-</div></header>
-<main>
-  <section class="hero">
-    <h1 id="heroTitle">আপনার পছন্দের কেনাকাটা, এক জায়গায়</h1>
-    <p id="heroText">দৈনন্দিন প্রয়োজনীয় পণ্য খুঁজুন, কার্টে যোগ করুন এবং WhatsApp-এ অর্ডার পাঠান।</p>
-    <button class="btn primary" onclick="document.getElementById('productsTitle').scrollIntoView({behavior:'smooth'})" id="shopNow">কেনাকাটা শুরু করুন</button>
+<main class="wrap">
+  <section id="auth" class="card glow">
+    <div class="logo">MY <span>DOCS</span></div>
+    <p class="muted">আপনার গুরুত্বপূর্ণ ডকুমেন্ট, এক নিরাপদ জায়গায়।</p>
+    <h1 id="authTitle">স্বাগতম!</h1>
+    <p class="muted" id="authDesc">আপনার ব্যক্তিগত ফাইলে প্রবেশ করতে লগইন করুন।</p>
+    <div id="notice" role="status"></div>
+    <form id="authForm">
+      <label for="email">ইমেইল</label>
+      <input id="email" type="email" autocomplete="email"
+       placeholder="you@example.com" required>
+      <label for="password">পাসওয়ার্ড</label>
+      <input id="password" type="password"
+       autocomplete="current-password" minlength="8"
+       placeholder="কমপক্ষে ৮ অক্ষর" required>
+      <button id="authBtn" class="btn full" type="submit">লগইন করুন</button>
+    </form>
+    <button id="switchAuth" class="link" type="button">
+      নতুন অ্যাকাউন্ট তৈরি করুন
+    </button>
   </section>
-  <div class="tools">
-    <input id="search" type="search" placeholder="পণ্য খুঁজুন..." oninput="renderProducts()">
-    <select id="category" onchange="renderProducts()"><option value="all">সব বিভাগ</option><option value="fashion">পোশাক</option><option value="tech">ইলেকট্রনিক্স</option><option value="home">ঘর ও রান্নাঘর</option><option value="beauty">সৌন্দর্য</option></select>
-  </div>
-  <div class="section-head"><h2 id="productsTitle">জনপ্রিয় পণ্য</h2><span class="muted" id="productCount"></span></div>
-  <section class="grid" id="products"></section>
-  <section class="cart" id="cart">
-    <h2 id="cartTitle">আপনার শপিং কার্ট</h2><div id="cartItems"></div>
-    <div class="total"><span id="totalLabel">মোট</span><span id="total">৳0</span></div>
-    <h3 id="checkoutTitle">অর্ডারের তথ্য</h3>
-    <div class="form-grid">
-      <input id="customerName" placeholder="আপনার নাম *" autocomplete="name">
-      <input id="customerPhone" placeholder="মোবাইল নম্বর *" type="tel" autocomplete="tel">
-      <input id="customerAddress" placeholder="ডেলিভারি ঠিকানা *" autocomplete="street-address">
-<input id="customerEmail" placeholder="ইমেইল (ঐচ্ছিক)" type="email" autocomplete="email">
-<textarea id="customerNote" rows="3" placeholder="অতিরিক্ত নির্দেশনা (ঐচ্ছিক)"></textarea>
-</div>
-<p class="muted" id="waHint">WhatsApp-এ অর্ডার পাঠাতে নিচের বোতাম চাপুন। প্রথমে কোডে আপনার WhatsApp নম্বর বসাতে হবে।</p>
-<button class="btn primary" style="width:100%" onclick="sendOrder()" id="orderBtn">WhatsApp-এ অর্ডার করুন</button>
-</section>
+
+  <section id="dashboard" class="card hidden glow">
+    <div class="top">
+      <div>
+        <div class="logo">MY <span>DOCS</span></div>
+        <p class="muted">আপনার ব্যক্তিগত ডকুমেন্ট ভল্ট</p>
+      </div>
+      <button id="logout" class="btn secondary">লগআউট</button>
+    </div>
+    <div id="notice2" role="status"></div>
+    <div class="stats">
+      <div class="muted">লগইন করা অ্যাকাউন্ট</div>
+      <div id="userEmail" style="overflow-wrap:anywhere"></div>
+      <div class="muted" style="margin-top:12px">আপনার ফাইল</div>
+      <strong id="count">0</strong>
+    </div>
+    <h2>নতুন ডকুমেন্ট সেভ করুন</h2>
+    <form id="uploadForm">
+      <label for="docName">ডকুমেন্টের নাম (ঐচ্ছিক)</label>
+      <input id="docName" maxlength="100"
+       placeholder="যেমন: Passport Copy">
+      <label for="fileInput">ফাইল নির্বাচন করুন</label>
+      <input id="fileInput" type="file" required
+       accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+      <p class="small">PDF, JPG, PNG, DOC, DOCX — সর্বোচ্চ ১০ MB।</p>
+      <button class="btn full" id="uploadBtn" type="submit">
+        ☁️ আপলোড ও সেভ করুন
+      </button>
+    </form>
+    <div id="drop">
+      <h2>আমার ডকুমেন্ট</h2>
+      <input id="search" type="search"
+       placeholder="ডকুমেন্ট খুঁজুন...">
+      <div id="files" class="muted">ফাইল লোড হচ্ছে...</div>
+      <button id="refresh" class="btn secondary full" type="button">
+        তালিকা রিফ্রেশ
+      </button>
+    </div>
+  </section>
 </main>
-<footer>© <span id="year"></span> HAWAKUM SHOP · <span id="footerText">আপনার অনলাইন শপ</span></footer>
+
 <script>
-const WHATSAPP_NUMBER = "97451085419"; // এখানে দেশের কোডসহ আপনার WhatsApp নম্বর দিন; + বা স্পেস দেবেন না।
-const products = [{id:1,emoji:"👕",nameBn:"ক্যাজুয়াল টি-শার্ট",nameEn:"Casual T-shirt",price:450,cat:"fashion"
-{id:2,emoji:"🎒",nameBn:"দৈনন্দিন ব্যাকপ্যাক",nameEn:"Everyday Backpack",price:850,cat:"fashion"},
-{id:3,emoji:"🎧",nameBn:"ওয়্যারলেস হেডফোন",nameEn:"Wireless Headphones",price:1250,cat:"tech"},
-{id:4,emoji:"⌚",nameBn:"স্মার্ট ঘড়ি",nameEn:"Smart Watch",price:1750,cat:"tech"},
-{id:5,emoji:"☕",nameBn:"সিরামিক কফি মগ",nameEn:"Ceramic Coffee Mug",price:250,cat:"home"},
-{id:6,emoji:"💡",nameBn:"LED ডেস্ক ল্যাম্প",nameEn:"LED Desk Lamp",price:650,cat:"home"},
-{id:7,emoji:"🧴",nameBn:"স্কিন কেয়ার সেট",nameEn:"Skin Care Set",price:590,cat:"beauty"}, {id:8,emoji:"🕶️",nameBn:"সানগ্লাস",nameEn:"Sunglasses",price:390,cat:"fashion"}
-];let lang="bn", cart={};
-const $=id=>document.getElementById(id);
-function money(n){return (lang==="bn"?"৳":"BDT ")+Number(n).toLocaleString(lang==="bn"?"bn-BD":"en-US");}function toggleLang(
-{lang=lang==="bn"?"en":"bn";document.documentElement.lang=lang;("langBtn").textContent=lang==="bn"?"English":"বাংলা";applyLanguage();renderProducts();renderCart();}
-function applyLanguage()
-{const t=lang==="bn";
-$("tagline").textContent=t?"আপনার পছন্দ, আপনার শপ":"Your choice, your shop"; $("heroTitle").textContent=t?"আপনার পছন্দের কেনাকাটা, এক জায়গায়":"Your favorite shopping, all in one place"; $("heroText").textContent=t?"দৈনন্দিন প্রয়োজনীয় পণ্য খুঁজুন, কার্টে যোগ করুন এবং WhatsApp-এ অর্ডার পাঠান।":"Find everyday essentials, add them to your cart, and send your order on WhatsApp."; $("shopNow").textContent=t?"কেনাকাটা শুরু করুন":"Start Shopping";
-$("search").placeholder=t?"পণ্য খুঁজুন...":"Search products..."; $("category").options[0].text=t?"সব বিভাগ":"All categories"; $("category").options[1].text=t?"পোশাক":"Fashion";$("category").options[2].text=t?"ইলেকট্রনিক্স":"Electronics";$("category").options[3].text=t?"ঘর ও রান্নাঘর":"Home & Kitchen";$("category").options[4].text=t?"সৌন্দর্য":"Beauty";
- $("productsTitle").textContent=t?"জনপ্রিয় পণ্য":"Popular Products";$("cartLabel").textContent=t?"কার্ট":"Cart";$("cartTitle").textContent=t?"আপনার শপিং কার্ট":"Your Shopping Cart";$("totalLabel").textContent=t?"মোট":"Total";$("checkoutTitle").textContent=t?"অর্ডারের তথ্য":"Order Details";
- $("customerName").placeholder=t?"আপনার নাম *":"Your name *";$("customerPhone").placeholder=t?"মোবাইল নম্বর *":"Phone number *";$("customerAddress").placeholder=t?"ডেলিভারি ঠিকানা *":"Delivery address *";$("customerEmail").placeholder=t?"ইমেইল (ঐচ্ছিক)":"Email (optional)";$("customerNote").placeholder=t?"অতিরিক্ত নির্দেশনা (ঐচ্ছিক)":"Extra instructions (optional)";
- $("waHint").textContent=t?"WhatsApp-এ অর্ডার পাঠাতে নিচের বোতাম চাপুন। প্রথমে কোডে আপনার WhatsApp নম্বর বসাতে হবে।":"Tap below to send your order on WhatsApp. Add your WhatsApp number in the code first.";
- $("orderBtn").textContent=t?"WhatsApp-এ অর্ডার করুন":"Order on WhatsApp";$("footerText").textContent=t?"আপনার অনলাইন শপ":"Your online shop";}
-function renderProducts()
-{const q=$("search").value.trim().toLowerCase(), cat=$("category").value;
-const list=products.filter(p=>(cat==="all"||p.cat===cat)&&((lang==="bn"?p.nameBn:p.nameEn).toLowerCase().includes(q)||p.nameBn.toLowerCase().includes(q)||p.nameEn.toLowerCase().includes(q)));
- $("productCount").textContent=lang==="bn"?list.length+"টি পণ্য":list.length+" products";
- $("products").innerHTML=list.length?list.map(p=>`<article class="card"><div class="product-img" role="img" aria-label="${p.nameEn}">${p.emoji}</div><div class="card-body"><h3>${lang==="bn"?p.nameBn:p.nameEn}</h3><div class="price">${money(p.price)}</div><div class="muted">${lang==="bn"?"নমুনা পণ্য":"Sample product"}</div><button class="btn primary" onclick="addToCart(${p.id})">${lang==="bn"?"কার্টে যোগ করুন":"Add to Cart"}</button></div></article>`).join(""):`<div class="empty">${lang==="bn"?"কোনো পণ্য পাওয়া যায়নি।":"No products found."}</div>`;}
-function addToCart(id){cart[id]=(cart[id]||0)+1;renderCart();}
-function changeQty(id,delta){cart[id]=(cart[id]||0)+delta;if(cart[id]<=0)delete cart[id];renderCart();}
-function renderCart()
-{const items=products.filter(p=>cart[p.id]);$("cartCount").textContent=Object.values(cart).reduce((a,b)=>a+b,0);
- $("cartItems").innerHTML=items.length?items.map(p=>`<div class="cart-row"><div><strong>${lang==="bn"?p.nameBn:p.nameEn}</strong><div class="muted">${money(p.price)} × ${cart[p.id]}</div></div><div class="qty"><button aria-label="Decrease quantity" onclick="changeQty(${p.id},-1)">−</button><span>${cart[p.id]}</span><button aria-label="Increase quantity" onclick="changeQty(${p.id},1)">+</button></div></div>`).join(""):`<div class="empty">${lang==="bn"?"আপনার কার্ট খালি। পণ্য যোগ করুন।":"Your cart is empty. Add some products."}</div>`;
- const total=items.reduce((s,p)=>s+p.price*cart[p.id],0);$("total").textContent=money(total);}
-function sendOrder()
-{const items=products.filter(p=>cart[p.id]);if(!items.length){alert(lang==="bn"?"প্রথমে কার্টে পণ্য যোগ করুন।":"Please add products to your cart first.");return;}
-const name=$("customerName").value.trim(),phone=$("customerPhone").value.trim(),address=$("customerAddress").value.trim();
- if(!name||!phone||!address){alert(lang==="bn"?"নাম, মোবাইল নম্বর ও ঠিকানা পূরণ করুন।":"Please enter your name, phone number, and address.");return;}
- if(WHATSAPP_NUMBER.includes("X")){alert(lang==="bn"?"কোডে WHATSAPP_NUMBER-এর জায়গায় আপনার WhatsApp নম্বর বসান।":"Replace WHATSAPP_NUMBER in the code with your WhatsApp number.");return;}
- 
-const total=items.reduce((s,p)=>s+p.price*cart[p.id],0);
-const lines=items.map(p=>`${lang==="bn"?p.nameBn:p.nameEn} × ${cart[p.id]} = ${money(p.price*cart[p.id])}`);
-const msg=(lang==="bn"?"HAWAKUM SHOP অর্ডার\n":"HAWAKUM SHOP ORDER\n")+"\n"+lines.join("\n")+"\n\n"+(lang==="bn"?"মোট: ":"Total: ")+money(total)+"\n"+(lang==="bn"?"নাম: ":"Name: ")+name+"\n"+(lang==="bn"?"ফোন: ":"Phone: ")+phone+"\n"+(lang==="bn"?"ঠিকানা: ":"Address: ")+address+($("customerEmail").value.trim()?"\nEmail: "+$("customerEmail").value.trim():"")+($("customerNote").value.trim()?"\nNote: "+$("customerNote").value.trim():"");
- window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(msg),"_blank");
+const SUPABASE_URL = "YOUR_SUPABASE_URL";
+const SUPABASE_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
+const BUCKET = "my-docs";
+const MAX_SIZE = 10 * 1024 * 1024;
+const ALLOWED = [
+  "pdf", "jpg", "jpeg", "png", "doc", "docx"
+];
+
+const $ = id => document.getElementById(id);
+const authPanel = $("auth");
+const dash = $("dashboard");
+const notice = $("notice");
+const notice2 = $("notice2");
+
+let client;
+let currentUser = null;
+let isRegister = false;
+let allFiles = [];
+let busy = false;
+
+function message(text, error=false, target=notice) {
+  target.textContent = text;
+  target.className = text ? (error ? "err" : "ok") : "";
 }
-$("year").textContent=new Date().getFullYear();applyLanguage();renderProducts();renderCart();
+function safeError(error) {
+  console.error(error);
+  return error?.message || "কাজটি সম্পন্ন হয়নি। আবার চেষ্টা করুন।";
+}
+function setBusy(value) {
+  busy = value;
+  $("authBtn").disabled = value;
+  $("uploadBtn").disabled = value;
+  $("logout").disabled = value;
+}
+function showAuth() {
+  currentUser = null;
+  allFiles = [];
+  authPanel.classList.remove("hidden");
+  dash.classList.add("hidden");
+}
+function showDashboard(user) {
+  currentUser = user;
+  authPanel.classList.add("hidden");
+  dash.classList.remove("hidden");
+  $("userEmail").textContent = user.email || "Logged in";
+  $("count").textContent = "…";
+  loadFiles();
+}
+
+function updateAuthMode() {
+  $("authTitle").textContent =
+    isRegister ? "নতুন অ্যাকাউন্ট" : "স্বাগতম!";
+  $("authDesc").textContent = isRegister
+    ? "আপনার ব্যক্তিগত অ্যাকাউন্ট তৈরি করুন।"
+    : "আপনার ব্যক্তিগত ফাইলে প্রবেশ করতে লগইন করুন।";
+  $("authBtn").textContent =
+    isRegister ? "অ্যাকাউন্ট তৈরি করুন" : "লগইন করুন";
+  $("switchAuth").textContent = isRegister
+    ? "আগে অ্যাকাউন্ট আছে? লগইন করুন"
+    : "নতুন অ্যাকাউন্ট তৈরি করুন";
+  $("password").autocomplete =
+    isRegister ? "new-password" : "current-password";
+}
+$("switchAuth").addEventListener("click", () => {
+  isRegister = !isRegister;
+  message("");
+  updateAuthMode();
+});
+
+async function init() {
+  if (SUPABASE_URL.startsWith("YOUR_") ||
+      SUPABASE_KEY.startsWith("YOUR_")) {
+    message("প্রথমে কোডে আপনার Supabase URL ও Publishable Key বসান.", true);
+    return;
+  }
+
+  try {
+    client = window.supabase.createClient(
+      SUPABASE_URL, SUPABASE_KEY,
+      { auth: { persistSession: true, autoRefreshToken: true } }
+    );
+
+    client.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_OUT") {
+        showAuth();
+      } else if (session?.user) {
+        showDashboard(session.user);
+      }
+    });
+
+    const { data, error } = await client.auth.getSession();
+    if (error) throw error;
+    if (data.session?.user) showDashboard(data.session.user);
+  } catch (e) {
+    message(safeError(e), true);
+  }
+}
+
+$("authForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  if (!client || busy) return;
+  message("");
+  setBusy(true);
+
+  try {
+    const email = $("email").value.trim();
+    const password = $("password").value;
+    let result;
+
+    if (isRegister) {
+      result = await client.auth.signUp({ email, password });
+      if (result.error) throw result.error;
+
+      if (!result.data.session) {
+        message("অ্যাকাউন্ট তৈরি হয়েছে। ইমেইল যাচাই করে তারপর লগইন করুন.");
+      } else if (result.data.user) {
+        showDashboard(result.data.user);
+      }
+    } else {
+      result = await client.auth.signInWithPassword({
+        email, password
+      });
+      if (result.error) throw result.error;
+      showDashboard(result.data.user);
+    }
+  } catch (e) {
+    message(safeError(e), true);
+  } finally {
+    setBusy(false);
+  }
+});
+
+function extension(name) {
+  return (name.split(".").pop() || "").toLowerCase();
+}
+function validFile(file) {
+  if (!file) throw new Error("একটি ফাইল নির্বাচন করুন।");
+  if (file.size > MAX_SIZE)
+    throw new Error("ফাইলটি ১০ MB-এর চেয়ে বড়।");
+  if (!ALLOWED.includes(extension(file.name)))
+    throw new Error("এই ফাইলের ধরন অনুমোদিত নয়।");
+}
+function cleanName(name) {
+  return name.normalize("NFKC")
+    .replace(/[\/\\\u0000-\u001f\u007f]/g, "_")
+    .trim().slice(0, 100) || "document";
+}
+
+$("uploadForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  if (!client || !currentUser || busy) return;
+  message("", false, notice2);
+  setBusy(true);
+
+  try {
+    const file = $("fileInput").files[0];
+    validFile(file);
+
+    const ext = extension(file.name);
+    const id = crypto.randomUUID();
+    const path = `${currentUser.id}/${id}.${ext}`;
+
+    const { error } = await client.storage.from(BUCKET).upload(
+      path, file, {
+        upsert: false,
+        contentType: file.type || "application/octet-stream",
+        cacheControl: "3600",
+        metadata: {
+          original_name: cleanName(
+            $("docName").value.trim() || file.name
+          )
+        }
+      }
+    );
+    if (error) throw error;
+
+    $("fileInput").value = "";
+    $("docName").value = "";
+    message("ফাইল ক্লাউডে সেভ হয়েছে।", false, notice2);
+    await loadFiles();
+  } catch (e) {
+    message(safeError(e), true, notice2);
+  } finally {
+    setBusy(false);
+  }
+});
+
+async function loadFiles() {
+  if (!client || !currentUser) return;
+
+  $("files").textContent = "ফাইল লোড হচ্ছে...";
+  try {
+    const { data, error } = await client.storage.from(BUCKET)
+      .list(currentUser.id, {
+        limit: 100,
+        offset: 0,
+        sortBy: { column: "created_at", order: "desc" }
+      });
+    if (error) throw error;
+
+    allFiles = (data || []).filter(
+      f => f.name && !f.name.startsWith(".")
+    );
+    $("count").textContent = String(allFiles.length);
+    renderFiles();
+  } catch (e) {
+    $("files").textContent = safeError(e);
+  }
+}
+
+function renderFiles() {
+  const query = $("search").value.trim().toLowerCase();
+  const filtered = allFiles.filter(f =>
+    f.name.toLowerCase().includes(query)
+  );
+  const container = $("files");
+  container.replaceChildren();
+
+  if (!filtered.length) {
+    container.textContent = allFiles.length
+      ? "মিল পাওয়া যায়নি।"
+      : "এখনো কোনো ডকুমেন্ট নেই। প্রথম ফাইল আপলোড করুন।";
+    return;
+  }
+
+  filtered.forEach(f => {
+    const row = document.createElement("div");
+    row.className = "file";
+
+    const info = document.createElement("div");
+    info.style.minWidth = "0";
+    const name = document.createElement("div");
+    name.className = "file-name";
+    name.textContent = f.name;
+    const meta = document.createElement("div");
+    meta.className = "small";
+    meta.textContent = f.created_at
+      ? new Date(f.created_at).toLocaleString()
+      : "Private document";
+    info.append(name, meta);
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+    const download = document.createElement("button");
+    download.className = "btn";
+    download.textContent = "ডাউনলোড";
+    download.addEventListener("click", () => downloadFile(f.name));
+
+    const del = document.createElement("button");
+    del.className = "btn secondary";
+    del.textContent = "মুছুন";
+    del.addEventListener("click", () => deleteFile(f.name));
+
+    actions.append(download, del);
+    row.append(info, actions);
+    container.append(row);
+  });
+}
+
+async function downloadFile(name) {
+  if (!currentUser) return;
+  message("", false, notice2);
+
+  try {
+    const path = `${currentUser.id}/${name}`;
+    const { data, error } = await client.storage.from(BUCKET)
+      .createSignedUrl(path, 60);
+    if (error) throw error;
+
+    const a = document.createElement("a");
+    a.href = data.signedUrl;
+    a.download = name;
+    a.rel = "noopener";
+    document.body.append(a);
+    a.click();
+    a.remove();
+  } catch (e) {
+    message(safeError(e), true, notice2);
+  }
+}
+
+async function deleteFile(name) {
+  if (!currentUser) return;
+  if (!confirm(`"${name}" ফাইলটি মুছে ফেলবেন?`)) return;
+
+  try {
+    const path = `${currentUser.id}/${name}`;
+    const { error } = await client.storage.from(BUCKET)
+      .remove([path]);
+    if (error) throw error;
+
+    message("ফাইল মুছে ফেলা হয়েছে।", false, notice2);
+    await loadFiles();
+  } catch (e) {
+    message(safeError(e), true, notice2);
+  }
+}
+
+$("search").addEventListener("input", renderFiles);
+$("refresh").addEventListener("click", loadFiles);
+
+$("logout").addEventListener("click", async () => {
+  if (!client || busy) return;
+  setBusy(true);
+  try {
+    const { error } = await client.auth.signOut();
+    if (error) throw error;
+    showAuth();
+  } catch (e) {
+    message(safeError(e), true, notice2);
+  } finally {
+    setBusy(false);
+  }
+});
+
+updateAuthMode();
+init();
 </script>
 </body>
 </html>
